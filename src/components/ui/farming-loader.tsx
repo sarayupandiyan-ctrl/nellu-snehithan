@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { useState, useEffect } from "react";
 
 interface FarmingLoaderProps {
   className?: string;
@@ -6,53 +7,107 @@ interface FarmingLoaderProps {
 }
 
 export const FarmingLoader = ({ className, message = "Loading..." }: FarmingLoaderProps) => {
+  const [currentIcon, setCurrentIcon] = useState(0);
+  const [dots, setDots] = useState("");
+  
+  const farmingSequence = [
+    { icon: "🌱", text: "Planting seeds" },
+    { icon: "💧", text: "Watering crops" },
+    { icon: "🌿", text: "Growing plants" },
+    { icon: "🌾", text: "Harvesting" },
+    { icon: "🚜", text: "Processing data" },
+    { icon: "🧠", text: "AI analyzing" }
+  ];
+  
+  useEffect(() => {
+    const iconInterval = setInterval(() => {
+      setCurrentIcon((prev) => (prev + 1) % farmingSequence.length);
+    }, 800);
+    
+    const dotsInterval = setInterval(() => {
+      setDots((prev) => {
+        if (prev.length >= 3) return "";
+        return prev + ".";
+      });
+    }, 400);
+    
+    return () => {
+      clearInterval(iconInterval);
+      clearInterval(dotsInterval);
+    };
+  }, [farmingSequence.length]);
+
   return (
-    <div className={cn("flex flex-col items-center justify-center space-y-4", className)}>
+    <div className={cn("flex flex-col items-center justify-center space-y-4 p-6 relative", className)}>
+      {/* Main Loading Animation */}
       <div className="relative">
-        {/* Main plant stem */}
-        <div className="w-2 h-16 bg-kerala-green rounded-full plant-sway origin-bottom"></div>
+        {/* Outer Ring */}
+        <div className="w-20 h-20 border-4 border-kerala-green/20 rounded-full"></div>
         
-        {/* Leaves */}
-        <div className="absolute -top-2 -left-3">
-          <div className="w-6 h-4 bg-success rounded-full transform -rotate-45 plant-sway"></div>
-        </div>
-        <div className="absolute -top-1 -right-3">
-          <div className="w-6 h-4 bg-success rounded-full transform rotate-45 plant-sway"></div>
-        </div>
-        <div className="absolute top-3 -left-4">
-          <div className="w-8 h-5 bg-kerala-green rounded-full transform -rotate-30 plant-sway"></div>
-        </div>
-        <div className="absolute top-3 -right-4">
-          <div className="w-8 h-5 bg-kerala-green rounded-full transform rotate-30 plant-sway"></div>
+        {/* Spinning Ring */}
+        <div className="absolute inset-0 w-20 h-20 border-4 border-transparent border-t-kerala-green border-r-kerala-green rounded-full animate-spin"></div>
+        
+        {/* Center Icon */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <span className="text-3xl animate-bounce plant-sway">
+            {farmingSequence[currentIcon].icon}
+          </span>
         </div>
         
-        {/* Falling seeds animation */}
-        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
-          <div className="w-1 h-1 bg-sunshine-yellow rounded-full animate-leaf-fall" style={{ animationDelay: '0s' }}></div>
-          <div className="w-1 h-1 bg-sunshine-yellow rounded-full animate-leaf-fall" style={{ animationDelay: '0.5s' }}></div>
-          <div className="w-1 h-1 bg-sunshine-yellow rounded-full animate-leaf-fall" style={{ animationDelay: '1s' }}></div>
+        {/* Growing Plants Animation */}
+        <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+          <div className="flex space-x-1">
+            {[0, 1, 2].map((i) => (
+              <div
+                key={i}
+                className="w-1 bg-kerala-green rounded-full grow-animation"
+                style={{
+                  height: `${8 + i * 2}px`,
+                  animationDelay: `${i * 0.3}s`
+                }}
+              ></div>
+            ))}
+          </div>
         </div>
-        
-        {/* Growth rings */}
-        <div className="absolute inset-0 border-2 border-kerala-green/30 rounded-full animate-ping"></div>
-        <div className="absolute inset-2 border border-success/50 rounded-full animate-pulse"></div>
       </div>
       
-      {/* Loading text */}
-      <div className="text-center">
-        <p className="text-primary font-medium malayalam">{message}</p>
-        <div className="flex space-x-1 mt-2 justify-center">
-          <div className="w-2 h-2 bg-kerala-green rounded-full animate-bounce" style={{ animationDelay: '0s' }}></div>
-          <div className="w-2 h-2 bg-kerala-green rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-          <div className="w-2 h-2 bg-kerala-green rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+      {/* Loading Text */}
+      <div className="text-center space-y-2">
+        <div className="flex items-center justify-center space-x-2">
+          <span className="text-sm font-medium text-kerala-green">
+            {farmingSequence[currentIcon].text}
+          </span>
+          <span className="text-kerala-green font-bold w-4">
+            {dots}
+          </span>
         </div>
+        <p className="text-xs text-muted-foreground max-w-xs malayalam">
+          {message}
+        </p>
       </div>
       
       {/* Farm tractor moving across */}
-      <div className="relative w-32 h-4 overflow-hidden bg-earth-brown/20 rounded-full">
-        <div className="absolute top-1/2 transform -translate-y-1/2 animate-farming-load">
+      <div className="relative w-32 h-3 overflow-hidden bg-earth-brown/20 rounded-full">
+        <div className="absolute top-1/2 transform -translate-y-1/2 text-lg" style={{ animation: 'farming-load 3s ease-in-out infinite' }}>
           🚜
         </div>
+      </div>
+      
+      {/* Floating Elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {[...Array(3)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute text-lg opacity-60"
+            style={{
+              left: `${20 + i * 30}%`,
+              animation: `leaf-fall 3s ease-in-out infinite`,
+              animationDelay: `${i * 1}s`
+            }}
+          >
+            🍃
+          </div>
+        ))}
       </div>
     </div>
   );

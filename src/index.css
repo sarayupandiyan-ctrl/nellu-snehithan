@@ -204,4 +204,9 @@ All colors MUST be HSL.
     50% { transform: translateX(0%); }
     100% { transform: translateX(100%); }
   }
+  
+  /* Animation classes */
+  .animate-leaf-fall {
+    animation: leaf-fall 2s ease-in-out infinite;
+  }
 }
