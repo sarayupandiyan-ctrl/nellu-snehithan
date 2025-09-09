@@ -22,6 +22,7 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          soft: "hsl(var(--primary-soft))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -31,6 +32,20 @@ export default {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
+        },
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+        },
+        "kerala-green": "hsl(var(--kerala-green))",
+        "kerala-light-green": "hsl(var(--kerala-light-green))",
+        "earth-brown": "hsl(var(--earth-brown))",
+        "sky-blue": "hsl(var(--sky-blue))",
+        "sunshine-yellow": "hsl(var(--sunshine-yellow))",
+        "coconut-white": "hsl(var(--coconut-white))",
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
@@ -84,6 +99,16 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "grow": "grow var(--grow-duration) ease-in-out infinite alternate",
+        "pulse-gentle": "pulse-gentle var(--pulse-duration) ease-in-out infinite",
+        "plant-sway": "plant-sway 3s ease-in-out infinite",
+        "leaf-fall": "leaf-fall 2s ease-in-out infinite",
+        "farming-load": "farming-load 2s ease-in-out infinite",
+      },
+      backgroundImage: {
+        "gradient-primary": "var(--gradient-primary)",
+        "gradient-earth": "var(--gradient-earth)",
+        "gradient-sky": "var(--gradient-sky)",
       },
     },
   },

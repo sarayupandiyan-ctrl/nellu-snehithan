@@ -8,33 +8,59 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Kerala Agriculture Theme - Natural Green Palette */
+    --background: 120 20% 98%;
+    --foreground: 120 15% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 120 15% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 120 15% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Kerala Green - Primary Brand Color */
+    --primary: 120 60% 35%;
+    --primary-foreground: 0 0% 100%;
+    --primary-soft: 120 40% 85%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Natural Secondary Colors */
+    --secondary: 60 25% 92%;
+    --secondary-foreground: 120 15% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 120 15% 96%;
+    --muted-foreground: 120 10% 55%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 45 80% 88%;
+    --accent-foreground: 120 15% 25%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Alert Colors for Agriculture */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --warning: 35 90% 65%;
+    --warning-foreground: 0 0% 100%;
+    --success: 120 60% 45%;
+    --success-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 120 15% 90%;
+    --input: 120 15% 96%;
+    --ring: 120 60% 35%;
+
+    /* Custom Kerala Theme Variables */
+    --kerala-green: 120 60% 35%;
+    --kerala-light-green: 120 40% 85%;
+    --earth-brown: 30 25% 45%;
+    --sky-blue: 200 80% 65%;
+    --sunshine-yellow: 45 90% 70%;
+    --coconut-white: 30 15% 96%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(120 50% 45%));
+    --gradient-earth: linear-gradient(135deg, hsl(var(--earth-brown)), hsl(45 40% 60%));
+    --gradient-sky: linear-gradient(135deg, hsl(var(--sky-blue)), hsl(180 70% 75%));
+
+    /* Farming Animation Variables */
+    --grow-duration: 2s;
+    --pulse-duration: 1.5s;
 
     --radius: 0.5rem;
 
@@ -56,33 +82,39 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Dark Mode for Agriculture App */
+    --background: 120 15% 8%;
+    --foreground: 120 20% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 120 15% 12%;
+    --card-foreground: 120 20% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 120 15% 12%;
+    --popover-foreground: 120 20% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 120 50% 55%;
+    --primary-foreground: 120 15% 8%;
+    --primary-soft: 120 30% 25%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 120 10% 18%;
+    --secondary-foreground: 120 20% 85%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 120 10% 15%;
+    --muted-foreground: 120 15% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 45 60% 25%;
+    --accent-foreground: 120 20% 95%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --warning: 35 80% 60%;
+    --warning-foreground: 0 0% 100%;
+    --success: 120 50% 50%;
+    --success-foreground: 0 0% 100%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 120 15% 22%;
+    --input: 120 15% 15%;
+    --ring: 120 50% 55%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -100,6 +132,76 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+
+  /* Malayalam Font Support */
+  .malayalam {
+    font-family: 'Malayalam Sangam MN', 'Noto Sans Malayalam', 'Manjari', sans-serif;
+  }
+}
+
+@layer components {
+  /* Farming Animation Components */
+  .grow-animation {
+    animation: grow var(--grow-duration) ease-in-out infinite alternate;
+  }
+  
+  .pulse-gentle {
+    animation: pulse-gentle var(--pulse-duration) ease-in-out infinite;
+  }
+  
+  .plant-sway {
+    animation: plant-sway 3s ease-in-out infinite;
+  }
+  
+  /* Agricultural UI Components */
+  .problem-card {
+    @apply bg-card border border-border rounded-lg p-6 hover:bg-accent/50 transition-all duration-300 cursor-pointer;
+  }
+  
+  .problem-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .expert-badge {
+    @apply bg-gradient-to-r from-kerala-green to-success text-white px-3 py-1 rounded-full text-sm font-medium;
+  }
+  
+  .weather-card {
+    @apply bg-gradient-to-br from-sky-blue/20 to-primary/10 backdrop-blur-sm border border-border/50 rounded-xl p-4;
+  }
+}
+
+@layer utilities {
+  /* Custom Keyframes for Agriculture Theme */
+  @keyframes grow {
+    0% { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(1.05) rotate(1deg); }
+  }
+  
+  @keyframes pulse-gentle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.02); }
+  }
+  
+  @keyframes plant-sway {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(1deg); }
+    75% { transform: rotate(-1deg); }
+  }
+  
+  @keyframes leaf-fall {
+    0% { transform: translateY(-10px) rotate(0deg); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(20px) rotate(180deg); opacity: 0; }
+  }
+  
+  /* Farming Loading Animation */
+  @keyframes farming-load {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(0%); }
+    100% { transform: translateX(100%); }
   }
 }
